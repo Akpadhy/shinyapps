@@ -3,44 +3,32 @@ library(ggplot2)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
+  trials = 100
   
-  # Expression that generates a histogram. The expression is
-  # wrapped in a call to renderPlot to indicate that:
-  #
-  #  1) It is "reactive" and therefore should re-execute automatically
-  #     when inputs change
-  #  2) Its output type is a plot
+  balls <- c(1, 1, 1, 0, 0)
+  number_of_red_balls <- vector(mode = "integer", length = trials)
   
-  output$sampPlot <- renderPlot({
-    # x    <- mtcars$mpg  # Old Faithful Geyser data
-    # bins <- seq(min(x), max(x), length.out = input$bins + 1)
+  for (n in 1:trials){
+    s = sample(balls, 4, replace = T)
+    number_of_red_balls[n] <- sum(s)
     
-    # # draw the histogram with the specified number of bins
-    # qplot(x)
-    v = vector(mode="integer", length = input$N)
-    bank <- read.csv("https://raw.githubusercontent.com/kshitijjain91/Credit-Risk-Capstone/master/datasets/Demogs_v1.csv")
-    income <- bank$Income
-    
-    for (sample_num in 1:input$N){
-      s <- sample(income, input$n, replace=F)
-      v[sample_num] <- mean(s)
-    }
-    
-    v <- data.frame(v)
-    ggplot(v, aes(v)) + geom_density() + xlab("Sample mean") + ylab("Probability Density")
+  }
+  # Takes the value of 'action' from input 
+  
+  output$redPlot <- renderPlot({
+    t = min(trials, input$action)
+    qplot(number_of_red_balls[1:t]) + xlab("X (Number of red balls)") +
+      ylab("Frequency") + scale_x_continuous(breaks=c(0,1,2,3,4)) +
+      coord_cartesian(xlim = c(0, 5)) + coord_cartesian(ylim = c(0, 20))
     
   })
-  output$popPlot <- renderPlot({
-    # x    <- mtcars$mpg  # Old Faithful Geyser data
-    # bins <- seq(min(x), max(x), length.out = input$bins + 1)
-    
-    # # draw the histogram with the specified number of bins
-    # qplot(x)
-    bank <- read.csv("https://raw.githubusercontent.com/kshitijjain91/Credit-Risk-Capstone/master/datasets/Demogs_v1.csv")
-    income <- bank$Income
-    
-    income <- data.frame(income)
-    ggplot(income, aes(income)) + geom_density() + xlab("Income") + ylab("Probability Density")
-    
-  })
+  
+  output$value <- renderPrint({ 
+    number_of_red_balls[1:min(trials,input$action)] 
+    })
+  
+  output$length <- renderPrint({ 
+    length(number_of_red_balls[1:min(trials, input$action)]) 
+    })
+  
 })

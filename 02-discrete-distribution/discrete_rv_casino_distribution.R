@@ -1,4 +1,5 @@
 library(ggplot2)
+library(ggthemes)
 
 trials = 75
 balls <- c(1, 1, 1, 0, 0)
@@ -13,8 +14,9 @@ for (n in 1:trials){
 number_of_red_balls
 t = table(number_of_red_balls)/trials
 t
-qplot(number_of_red_balls) + theme_tufte() + 
-  xlab("Number of red balls") + ylab("Count")
+qplot(number_of_red_balls)  + 
+  xlab("Number of red balls") + ylab("Count") + 
+  ggtitle("Distribution of X = Number of Red Balls")
 
 mean(number_of_red_balls)
 

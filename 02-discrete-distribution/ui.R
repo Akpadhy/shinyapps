@@ -4,7 +4,7 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("Central Limit Theorem"),
+  titlePanel("Probability Distribution - Discrete Random Variable"),
   titlePanel(hr()), 
   
   
@@ -12,37 +12,25 @@ shinyUI(fluidPage(
   sidebarLayout(
     sidebarPanel(
       h3("Instructions"), 
-      p("Choose the sample size n and number of samples N."),
-      h4("Choose a sample size"), 
-      br(),
-      sliderInput("n",
-                  "Sample size (n)",
-                  min = 1,
-                  max = 50,
-                  value = 30), 
       hr(),
-      h4("Choose the number of samples"),
+      p("Click the button to simulate the game once."),
       br(),
-      sliderInput("N",
-                  "Number of samples (N)",
-                  min = 10,
-                  max = 1000,
-                  value = 300)
+      actionButton("action", label="Pick 4 balls!", class="btn btn-danger"),
+      hr(),
+      p("The vector of number of red balls is printed below."),
+      fluidRow(column(12, verbatimTextOutput("value")))
+      
     ),
     
     
     
     # Show a plot of the generated distribution
     mainPanel(
-      h3("Distribution of Income"), 
-      plotOutput("popPlot"),
-      h3("Sampling Distribution of Mean Incomes"), 
-      p("The plots shows the sampling distribution of the mean incomes
-        of a bank's 71,295 credit card applicants. It takes N number of samples of 
-sample size n chosen by you and plots the distribution of sample means. Play around with some values of 
-        sample size and number of observations to see the central limit theorem 
-        in action."), 
-      plotOutput("sampPlot") 
+      h3("Number of Red Balls - Distribution"), 
+      p("Number of games played (max limit 100):"), 
+      fluidRow(column(12, verbatimTextOutput("length"))),
+      plotOutput("redPlot")
+      
       
     )
   )
