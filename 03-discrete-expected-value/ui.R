@@ -4,7 +4,7 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("Discrete Random Variable"),
+  titlePanel("Expected Value"),
   titlePanel(hr()), 
   
   
@@ -13,12 +13,10 @@ shinyUI(fluidPage(
     sidebarPanel(
       h3("Instructions"), 
       hr(),
-      p("Click the button to simulate the game once."),
+      p("Click the button to play the game 10 times."),
       br(),
-      actionButton("action", label="Pick 4 balls!", class="btn btn-danger"),
-      hr(),
-      p("Number of games played (max limit 100):"), 
-      fluidRow(column(6, verbatimTextOutput("length")))
+      actionButton("action", label="Play 10 times!", class="btn btn-danger"),
+      hr()
       
     ),
     
@@ -26,8 +24,10 @@ shinyUI(fluidPage(
     
     # Show a plot of the generated distribution
     mainPanel(
-      p("The vector of number of red balls is printed below."),
-      fluidRow(column(12, verbatimTextOutput("value"))),
+      p("Mumber of red balls obtained in each game:"),
+      fluidRow(column(12, verbatimTextOutput("num_red_balls"))),
+      p("The average number of red balls is:"),
+      fluidRow(column(12, verbatimTextOutput("mean"))),
       plotOutput("redPlot")
       
       

@@ -15,10 +15,10 @@ shinyUI(fluidPage(
       hr(),
       p("Click the button to simulate the game once."),
       br(),
-      actionButton("action", label="Pick 4 balls!", class="btn btn-danger"),
+      actionButton("action", label="Pick 4 red balls!", class="btn btn-danger"),
       hr(),
       p("Number of games played (max limit 100):"), 
-      fluidRow(column(6, verbatimTextOutput("length")))
+      fluidRow(column(3, verbatimTextOutput("length")))
       
     ),
     
