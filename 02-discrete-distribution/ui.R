@@ -4,7 +4,7 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("Discrete Random Variable"),
+  titlePanel("Discrete Random Variable - Frequency Distribution"),
   titlePanel(hr()), 
   
   
@@ -26,7 +26,7 @@ shinyUI(fluidPage(
     
     # Show a plot of the generated distribution
     mainPanel(
-      p("The vector of number of red balls is printed below."),
+      p("The (vector of) the number of red balls obtained in each trial is printed below."),
       fluidRow(column(12, verbatimTextOutput("value"))),
       plotOutput("redPlot")
       

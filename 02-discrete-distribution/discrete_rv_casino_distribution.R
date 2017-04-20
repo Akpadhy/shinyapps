@@ -5,6 +5,7 @@ trials = 75
 balls <- c(1, 1, 1, 0, 0)
 number_of_red_balls <- vector(mode = "integer", length = trials)
 
+
 for (n in 1:trials){
   s = sample(balls, 4, replace = T)
   number_of_red_balls[n] <- sum(s)
