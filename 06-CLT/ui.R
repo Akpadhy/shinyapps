@@ -11,7 +11,7 @@ shinyUI(fluidPage(
   fluidRow(
     column(12,
            p("The plots show the population distribution and sampling distribution of 
-             the incomes of about 71,290 credit card applicants of a bank. Choose different 
+             the incomes of about 71,295 credit card applicants of a bank. Choose different 
              sample sizes and number of samples and observe how the sampling distribution changes."))
   ),
   
@@ -21,7 +21,7 @@ shinyUI(fluidPage(
     column(6,
            br(),
            sliderInput("n",
-                       "Sample size (n)",
+                       "Sample size (k)",
                        min = 1,
                        max = 50,
                        value = 10)
@@ -57,7 +57,5 @@ shinyUI(fluidPage(
            
     )
   ),
-  
   hr()
-  
 ))
